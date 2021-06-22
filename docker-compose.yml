@@ -1,0 +1,19 @@
+version: "3"
+
+services:
+  mosquitto:
+    container_name: mosquitto
+    image: eclipse-mosquitto
+    ports:
+      - 1883:1883
+    volumes:
+      - ./mosquitto/config:/mosquitto/config
+      - ./mosquitto/data:/mosquitto/data
+      - ./mosquitto/log:/mosquitto/log
+
+  client:
+    container_name: client
+    build: ./
+    working_dir: /app
+    volumes:
+      - ./client:/app
